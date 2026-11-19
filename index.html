@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Меню</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f1e7; --card:#fffdf8; --ink:#2b2420; --muted:#7a6d62;
+    --accent:#7a2e2a; --gold:#b08a4a; --line:#e6dccb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  header{text-align:center;padding:28px 16px 14px}
+  header h1{font-family:Lora,serif;font-size:34px;margin:0;color:var(--accent);letter-spacing:.5px}
+  header .orn{color:var(--gold);font-size:14px;letter-spacing:6px;margin-top:4px}
+  nav{position:sticky;top:0;z-index:5;background:rgba(246,241,231,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  nav .row{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  nav .row::-webkit-scrollbar{display:none}
+  nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);white-space:nowrap}
+  nav a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  main{max-width:640px;margin:0 auto;padding:6px 14px 30px}
+  section{scroll-margin-top:62px;margin-top:18px}
+  h2{font-family:Lora,serif;font-size:22px;color:var(--accent);margin:0 0 8px;display:flex;align-items:center;gap:10px}
+  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+  .item{display:flex;align-items:baseline;gap:8px;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .item:last-child{border-bottom:none}
+  .name{font-size:16px;font-weight:500}
+  .note{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
+  .dots{flex:1;border-bottom:1px dotted #cbbfae;transform:translateY(-4px);min-width:12px}
+  .price{font-weight:600;white-space:nowrap;font-size:16px}
+  .price small{font-weight:500;color:var(--muted);font-size:13px}
+  footer{text-align:center;color:var(--muted);font-size:14px;padding:6px 16px 36px;max-width:640px;margin:0 auto}
+  .svc{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+<header>
+  <h1>Меню</h1>
+  <div class="orn">✦ ✦ ✦</div>
+</header>
+
+<nav><div class="row" id="tabs"></div></nav>
+<main id="menu"></main>
+<footer><span class="svc">Обслуживание +5%</span><p>Цены указаны в тенге</p></footer>
+
+<script>
+const MENU = [
+  {id:"breakfast", title:"Завтрак", items:[
+    ["Яичница","1 шт",250],
+    ["Сосиска","1 шт",250],
+  ]},
+  {id:"company", title:"Для компании", items:[
+    ["Бесбармак для компании","",20000],
+    ["Қуырдақ для компании","",20000],
+    ["Қазы","1 кг",15000],
+  ]},
+  {id:"hot", title:"Горячие блюда", items:[
+    ["Бесбармак","с айраном и сорпой",3500],
+    ["«Бал қуырдақ» из конины","",4000],
+    ["Қуырдақ из баранины","",4500],
+    ["Нарын с қазы","",2700],
+    ["Плов","",1600],
+    ["Манты рубленые","",1500],
+    ["Пельмени домашние","",1500],
+    ["Сорпа с кониной и қазы","",2000],
+    ["Асип","",2000],
+    ["Жилик","",1200],
+    ["Қазы","1 шт",350],
+  ]},
+  {id:"salads", title:"Салаты", items:[
+    ["Салат из свежих овощей","",1500],
+    ["Ачичук","",1300],
+    ["Корейский салат","порция",1000],
+    ["Корейский салат","½ порции",600],
+  ]},
+  {id:"tea", title:"Чай", items:[
+    ["Ташкентский чай","",1500],
+    ["Чай","чайник",800],
+    ["Чай с молоком","",300],
+    ["Чай чёрный","",300],
+    ["Чай зелёный","",300],
+    ["Чай 3 в 1","",500],
+  ]},
+  {id:"drinks", title:"Напитки", items:[
+    ["Айран","",300],
+    ["Coca-Cola","",800],
+    ["Макси чай","",800],
+    ["Горилла","энергетик",700],
+    ["Лимонад","стекло",700],
+    ["Диззи","стекло",700],
+    ["Вода без газа","1 л",500],
+  ]},
+  {id:"extra", title:"К столу", items:[
+    ["Хлеб","",150],
+    ["Соус","",200],
+  ]},
+];
+
+const fmt = n => n.toLocaleString("ru-RU").replace(/ /g," ");
+const tabs = document.getElementById("tabs");
+const menu = document.getElementById("menu");
+MENU.forEach(s=>{
+  const a=document.createElement("a"); a.href="#"+s.id; a.textContent=s.title; a.dataset.id=s.id;
+  a.addEventListener("click",e=>{e.preventDefault();document.getElementById(s.id).scrollIntoView({behavior:"smooth"});});
+  tabs.appendChild(a);
+  const sec=document.createElement("section"); sec.id=s.id;
+  sec.innerHTML=`<h2>${s.title}</h2><div class="card">${s.items.map(([n,note,p])=>
+    `<div class="item"><span class="name">${n}${note?`<span class="note">${note}</span>`:""}</span><span class="dots"></span><span class="price">${fmt(p)} <small>₸</small></span></div>`).join("")}</div>`;
+  menu.appendChild(sec);
+});
+const links=[...tabs.querySelectorAll("a")];
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle("on",l.dataset.id===e.target.id));
+    const on=tabs.querySelector(".on"); if(on) tabs.scrollTo({left:on.offsetLeft-tabs.clientWidth/2+on.clientWidth/2,behavior:"smooth"});
+  }});
+},{rootMargin:"-70px 0px -70% 0px"});
+document.querySelectorAll("section").forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
