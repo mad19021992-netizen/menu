@@ -3,50 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1a1310">
 <title>Меню</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f1e7; --card:#fffdf8; --ink:#2b2420; --muted:#7a6d62;
-    --accent:#7a2e2a; --gold:#b08a4a; --line:#e6dccb;
+    --bg:#1a1310; --bg2:#231a15; --card:#2a201a; --ink:#f3e9d8; --muted:#b5a48d;
+    --gold:#d4a95c; --gold2:#a8803f; --line:rgba(212,169,92,.18); --red:#9c3b2e;
+    --orn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24' viewBox='0 0 48 24'%3E%3Cg fill='none' stroke='%23d4a95c' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M24 22C24 11 13 5 9 10C5 15 12 19 14 14'/%3E%3Cpath d='M24 22C24 11 35 5 39 10C43 15 36 19 34 14'/%3E%3Cpath d='M0 22H6M42 22H48'/%3E%3C/g%3E%3Cpath d='M24 3l2 2-2 2-2-2z' fill='%23d4a95c'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box}
   html,body{margin:0}
-  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  header{text-align:center;padding:28px 16px 14px}
-  header h1{font-family:Lora,serif;font-size:34px;margin:0;color:var(--accent);letter-spacing:.5px}
-  header .orn{color:var(--gold);font-size:14px;letter-spacing:6px;margin-top:4px}
-  nav{position:sticky;top:0;z-index:5;background:rgba(246,241,231,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-  nav .row{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1200px 500px at 50% -200px, rgba(212,169,92,.16), transparent 70%)}
+
+  /* Hero */
+  .hero{text-align:center;padding:40px 20px 26px;position:relative}
+  .band{height:24px;background:var(--orn) repeat-x center;opacity:.55}
+  .hero .band{max-width:300px;margin:0 auto}
+  .hero .band.bottom{transform:scaleY(-1);margin-top:14px}
+  .kicker{font-family:Lora,serif;font-style:italic;color:var(--gold);font-size:17px;letter-spacing:.5px;margin-top:16px}
+  .hero h1{font-family:Lora,serif;font-weight:700;font-size:54px;line-height:1;margin:6px 0 4px;letter-spacing:1px;
+    background:linear-gradient(180deg,#f6e7c8,#d4a95c);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:14px;letter-spacing:3px;text-transform:uppercase}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:5;background:rgba(26,19,16,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .row{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;scrollbar-width:none;max-width:680px;margin:0 auto}
   nav .row::-webkit-scrollbar{display:none}
-  nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);white-space:nowrap}
-  nav a.on{background:var(--accent);border-color:var(--accent);color:#fff}
-  main{max-width:640px;margin:0 auto;padding:6px 14px 30px}
-  section{scroll-margin-top:62px;margin-top:18px}
-  h2{font-family:Lora,serif;font-size:22px;color:var(--accent);margin:0 0 8px;display:flex;align-items:center;gap:10px}
-  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px}
-  .item{display:flex;align-items:baseline;gap:8px;padding:12px 0;border-bottom:1px dashed var(--line)}
+  nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;padding:8px 15px;border:1px solid var(--line);border-radius:999px;background:var(--bg2);white-space:nowrap;transition:.2s}
+  nav a.on{background:var(--gold);border-color:var(--gold);color:#1a1310;font-weight:600}
+
+  main{max-width:680px;margin:0 auto;padding:4px 16px 20px}
+  section{scroll-margin-top:70px;margin-top:34px}
+  .head{text-align:center;margin-bottom:14px}
+  .head .num{font-family:Lora,serif;font-style:italic;color:var(--gold2);font-size:14px}
+  .head h2{font-family:Lora,serif;font-weight:600;font-size:28px;margin:2px 0 8px;color:var(--ink)}
+  .head .band{max-width:120px;margin:0 auto;opacity:.6}
+
+  .card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:18px;padding:6px 18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .item{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
   .item:last-child{border-bottom:none}
-  .name{font-size:16px;font-weight:500}
-  .note{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
-  .dots{flex:1;border-bottom:1px dotted #cbbfae;transform:translateY(-4px);min-width:12px}
-  .price{font-weight:600;white-space:nowrap;font-size:16px}
-  .price small{font-weight:500;color:var(--muted);font-size:13px}
-  footer{text-align:center;color:var(--muted);font-size:14px;padding:6px 16px 36px;max-width:640px;margin:0 auto}
-  .svc{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;color:var(--ink);font-weight:500}
+  .txt{flex:1;min-width:0}
+  .name{font-size:16.5px;font-weight:500;line-height:1.3}
+  .note{font-size:13px;color:var(--muted);margin-top:3px}
+  .price{font-family:Lora,serif;font-weight:600;font-size:18px;color:var(--gold);white-space:nowrap}
+  .price small{font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:var(--muted);margin-left:2px}
+
+  /* Featured (для компании) */
+  .feature .card{border-color:rgba(212,169,92,.45);background:linear-gradient(160deg,#3a2a1c,#241a14)}
+  .tag{display:inline-block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(212,169,92,.5);border-radius:6px;padding:2px 7px;margin-top:5px}
+
+  footer{max-width:680px;margin:36px auto 0;padding:0 16px 44px;text-align:center}
+  .svc{display:flex;justify-content:center;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-weight:500}
+  .svc b{color:var(--gold);font-family:Lora,serif;font-size:18px}
+  footer p{color:var(--muted);font-size:13px;margin:14px 0 18px}
+  footer .band{max-width:200px;margin:0 auto;opacity:.4}
 </style>
 </head>
 <body>
-<header>
+<header class="hero">
+  <div class="band"></div>
+  <div class="kicker">Ас мәзірі</div>
   <h1>Меню</h1>
-  <div class="orn">✦ ✦ ✦</div>
+  <div class="sub">Казахская кухня</div>
+  <div class="band bottom"></div>
 </header>
 
 <nav><div class="row" id="tabs"></div></nav>
 <main id="menu"></main>
-<footer><span class="svc">Обслуживание +5%</span><p>Цены указаны в тенге</p></footer>
+
+<footer>
+  <div class="svc">Обслуживание <b>+5%</b></div>
+  <p>Цены указаны в тенге</p>
+  <div class="band"></div>
+</footer>
 
 <script>
 const MENU = [
@@ -54,13 +88,13 @@ const MENU = [
     ["Яичница","1 шт",250],
     ["Сосиска","1 шт",250],
   ]},
-  {id:"company", title:"Для компании", items:[
+  {id:"company", title:"Для компании", feature:true, items:[
     ["Бесбармак для компании","",20000],
     ["Қуырдақ для компании","",20000],
     ["Қазы","1 кг",15000],
   ]},
   {id:"hot", title:"Горячие блюда", items:[
-    ["Бесбармак","с айраном и сорпой",3500],
+    ["Бесбармак","С айраном и сорпой",3500],
     ["«Бал қуырдақ» из конины","",4000],
     ["Қуырдақ из баранины","",4500],
     ["Нарын с қазы","",2700],
@@ -75,12 +109,12 @@ const MENU = [
   {id:"salads", title:"Салаты", items:[
     ["Салат из свежих овощей","",1500],
     ["Ачичук","",1300],
-    ["Корейский салат","порция",1000],
+    ["Корейский салат","Порция",1000],
     ["Корейский салат","½ порции",600],
   ]},
   {id:"tea", title:"Чай", items:[
     ["Ташкентский чай","",1500],
-    ["Чай","чайник",800],
+    ["Чай","Чайник",800],
     ["Чай с молоком","",300],
     ["Чай чёрный","",300],
     ["Чай зелёный","",300],
@@ -90,9 +124,9 @@ const MENU = [
     ["Айран","",300],
     ["Coca-Cola","",800],
     ["Макси чай","",800],
-    ["Горилла","энергетик",700],
-    ["Лимонад","стекло",700],
-    ["Диззи","стекло",700],
+    ["Горилла","Энергетик",700],
+    ["Лимонад","Стекло",700],
+    ["Диззи","Стекло",700],
     ["Вода без газа","1 л",500],
   ]},
   {id:"extra", title:"К столу", items:[
@@ -104,13 +138,14 @@ const MENU = [
 const fmt = n => n.toLocaleString("ru-RU").replace(/ /g," ");
 const tabs = document.getElementById("tabs");
 const menu = document.getElementById("menu");
-MENU.forEach(s=>{
+MENU.forEach((s,i)=>{
   const a=document.createElement("a"); a.href="#"+s.id; a.textContent=s.title; a.dataset.id=s.id;
   a.addEventListener("click",e=>{e.preventDefault();document.getElementById(s.id).scrollIntoView({behavior:"smooth"});});
   tabs.appendChild(a);
-  const sec=document.createElement("section"); sec.id=s.id;
-  sec.innerHTML=`<h2>${s.title}</h2><div class="card">${s.items.map(([n,note,p])=>
-    `<div class="item"><span class="name">${n}${note?`<span class="note">${note}</span>`:""}</span><span class="dots"></span><span class="price">${fmt(p)} <small>₸</small></span></div>`).join("")}</div>`;
+  const sec=document.createElement("section"); sec.id=s.id; if(s.feature) sec.className="feature";
+  sec.innerHTML=`<div class="head"><div class="num">${String(i+1).padStart(2,"0")}</div><h2>${s.title}</h2><div class="band"></div></div>
+  <div class="card">${s.items.map(([n,note,p])=>
+    `<div class="item"><div class="txt"><div class="name">${n}</div>${note?`<div class="note">${note}</div>`:""}</div><div class="price">${fmt(p)}<small>₸</small></div></div>`).join("")}</div>`;
   menu.appendChild(sec);
 });
 const links=[...tabs.querySelectorAll("a")];
@@ -119,7 +154,7 @@ const obs=new IntersectionObserver(es=>{
     links.forEach(l=>l.classList.toggle("on",l.dataset.id===e.target.id));
     const on=tabs.querySelector(".on"); if(on) tabs.scrollTo({left:on.offsetLeft-tabs.clientWidth/2+on.clientWidth/2,behavior:"smooth"});
   }});
-},{rootMargin:"-70px 0px -70% 0px"});
+},{rootMargin:"-80px 0px -65% 0px"});
 document.querySelectorAll("section").forEach(s=>obs.observe(s));
 </script>
 </body>
