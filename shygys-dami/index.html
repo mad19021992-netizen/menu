@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f1eb">
+<title>Шығыс дәмі — меню</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1eb; --card:#ffffff; --ink:#282320; --muted:#8e857a;
+    --charcoal:#332c26; --caramel:#96683f; --line:rgba(40,35,32,.10); --line-strong:rgba(40,35,32,.22);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Hero: чистый, без орнаментов ---------- */
+  .hero{
+    text-align:center;padding:44px 20px 34px;
+    background:var(--paper);
+  }
+  .kicker{
+    font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+    color:var(--caramel);display:flex;align-items:center;justify-content:center;gap:14px;
+  }
+  .kicker .rule{width:36px;height:1px;background:var(--line-strong);flex:none}
+  .hero h1{
+    font-weight:800;font-size:clamp(44px,11vw,60px);
+    line-height:1.05;letter-spacing:-0.02em;margin:14px 0 6px;color:var(--ink);
+  }
+  .hero .sub{
+    font-size:15px;font-weight:400;color:var(--muted);
+  }
+
+  /* ---------- Sticky nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:5;
+    background:rgba(244,241,235,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .row{display:flex;gap:8px;overflow-x:auto;padding:11px 16px;scrollbar-width:none;max-width:720px;margin:0 auto}
+  nav .row::-webkit-scrollbar{display:none}
+  nav a{
+    flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:500;
+    padding:8px 15px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+    white-space:nowrap;transition:background .2s,color .2s,border-color .2s;
+  }
+  nav a:focus-visible{outline:2px solid var(--caramel);outline-offset:2px}
+  nav a.on{background:var(--charcoal);border-color:var(--charcoal);color:#fff;font-weight:600}
+
+  main{max-width:720px;margin:0 auto;padding:6px 16px 8px}
+  section{scroll-margin-top:72px;margin-top:40px}
+
+  /* ---------- Section head ---------- */
+  .head{display:flex;align-items:baseline;gap:14px;margin-bottom:12px;padding:0 4px}
+  .head .rule{flex:1;height:1px;background:var(--line)}
+  .head h2{
+    font-weight:700;font-size:23px;line-height:1.15;
+    margin:0;color:var(--ink);white-space:nowrap;letter-spacing:-0.01em;
+  }
+
+  /* ---------- Card & items ---------- */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:4px 18px;box-shadow:0 4px 16px rgba(40,35,32,.05);
+  }
+  .item{display:flex;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .item:last-child{border-bottom:none}
+  .txt{flex:0 1 auto;min-width:0}
+  .name{font-size:16px;font-weight:500;line-height:1.35}
+  .note{font-size:13px;color:var(--muted);margin-top:3px}
+  .leader{flex:1;min-width:18px;border-bottom:1px solid var(--line);transform:translateY(-4px)}
+  .price{flex:none;font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .price small{font-size:12.5px;font-weight:500;color:var(--muted);margin-left:3px}
+
+  /* ---------- Featured: для компании ---------- */
+  .feature .card{
+    border-color:var(--line-strong);
+    border-top:3px solid var(--charcoal);
+    box-shadow:0 6px 18px rgba(40,35,32,.07);
+  }
+  .tag{
+    display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+    color:var(--caramel);border:1px solid rgba(150,104,63,.4);border-radius:4px;padding:3px 8px;margin-bottom:10px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{max-width:720px;margin:42px auto 0;padding:0 16px 44px;text-align:center}
+  .svc{
+    display:flex;justify-content:center;align-items:center;gap:10px;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:15px 18px;font-weight:500;font-size:15px;
+  }
+  .svc b{font-weight:700;color:var(--charcoal)}
+  footer p{color:var(--muted);font-size:13px;margin:14px 0 0}
+
+  @media (max-width:420px){
+    .head h2{font-size:20px}
+    .hero h1{font-size:clamp(40px,12vw,54px)}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="kicker"><span class="rule"></span>Ас мәзірі · Меню<span class="rule"></span></div>
+  <h1>Шығыс дәмі</h1>
+  <div class="sub">Вкус Востока каждый день</div>
+</header>
+
+<nav><div class="row" id="tabs"></div></nav>
+<main id="menu"></main>
+
+<footer>
+  <div class="svc">Обслуживание <b>+5%</b></div>
+  <p>Цены указаны в тенге</p>
+</footer>
+
+<script>
+const MENU = [
+  {id:"lagman", title:"Лагманы и ганфаны", items:[
+    ["Домашний лагман","",2500],
+    ["Гуйру лагман","",2500],
+    ["Суйру лагман","",2500],
+    ["Лазы ру лагман","",2500],
+    ["Могу ру лагман","",2500],
+    ["Жусы ру лагман","",2500],
+    ["Мошуру лагман","",2500],
+    ["Кабырга лагман","",2500],
+    ["Лапизы лагман","",2500],
+    ["Дапанджи лагман","",2500],
+    ["Баклажан лагман","",2500],
+    ["Жумыртка помидор лагман","",2500],
+    ["Ган бян цо мян","",2500],
+    ["Гуйру цомян","",2500],
+    ["Дин-дин цомян","",2500],
+    ["Суйру ганфан","",2500],
+    ["Мошуру ганфан","",2500],
+  ]},
+  {id:"hot", title:"Горячие блюда", items:[
+    ["Казан кебаб","",4500],
+    ["Казан кебаб куриный","",4000],
+    ["Бешбармак","",3500],
+    ["Лазру","",3000],
+    ["Нарын","",2700],
+    ["Фри с мясом","",2500],
+    ["Манпар","",2200],
+    ["Плов","",2000],
+    ["Манты","Порция",2000],
+    ["Манты","1 шт",400],
+    ["Пельмени","",2000],
+    ["Сорпа","",2000],
+    ["Асип","",2000],
+    ["Қазы","1 шт",350],
+  ]},
+  {id:"company", title:"Для компании", feature:true, items:[
+    ["Қуырдақ из баранины","",25000],
+    ["Қуырдақ из конины","",20000],
+    ["Бешбармак","",20000],
+    ["Плов","",15000],
+    ["Манты","",15000],
+    ["Дапанджи","",10000],
+  ]},
+  {id:"bakery", title:"Выпечка и закуски", items:[
+    ["Самса","",450],
+    ["Чебуреки","",350],
+    ["Пирожки","",250],
+    ["Баурсак","1 шт",100],
+    ["Баурсак","0,5 кг",1250],
+    ["Баурсак","1 кг",2500],
+    ["Яйцо варёное","",250],
+    ["Сосиски","",250],
+    ["Торт","",700],
+  ]},
+  {id:"tea", title:"Чай и кофе", items:[
+    ["Ташкентский чай","",1500],
+    ["Чай","Чайник",800],
+    ["Чай","",300],
+    ["Кофе","",400],
+  ]},
+  {id:"drinks", title:"Напитки", items:[
+    ["Айран","",300],
+    ["Сок натуральный","",1200],
+    ["Coca-Cola","",800],
+    ["Coca-Cola","0,5 л",550],
+    ["Макси чай","",800],
+    ["Горилла","Энергетик",700],
+    ["Диззи","",700],
+    ["Вода","1 л",500],
+    ["Вода","0,5 л",400],
+  ]},
+  {id:"extra", title:"К столу", items:[
+    ["Хлеб","",150],
+    ["Соус","",200],
+  ]},
+];
+
+const fmt = n => n.toLocaleString("ru-RU");
+const tabs = document.getElementById("tabs");
+const menu = document.getElementById("menu");
+MENU.forEach((s)=>{
+  const a=document.createElement("a"); a.href="#"+s.id; a.textContent=s.title; a.dataset.id=s.id;
+  a.addEventListener("click",e=>{e.preventDefault();document.getElementById(s.id).scrollIntoView({behavior:"smooth"});});
+  tabs.appendChild(a);
+  const sec=document.createElement("section"); sec.id=s.id; if(s.feature) sec.className="feature";
+  sec.innerHTML=`  <div class="head"><h2>${s.title}</h2><span class="rule"></span></div>
+  <div class="card">${s.items.map(([n,note,p])=>
+    `<div class="item"><div class="txt"><div class="name">${n}</div>${note?`<div class="note">${note}</div>`:""}</div><span class="leader"></span><div class="price">${fmt(p)}<small>₸</small></div></div>`).join("")}</div>`;
+  menu.appendChild(sec);
+});
+const links=[...tabs.querySelectorAll("a")];
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle("on",l.dataset.id===e.target.id));
+    const on=tabs.querySelector(".on"); if(on) tabs.scrollTo({left:on.offsetLeft-tabs.clientWidth/2+on.clientWidth/2,behavior:"smooth"});
+  }});
+},{rootMargin:"-80px 0px -65% 0px"});
+document.querySelectorAll("section").forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
